@@ -12,7 +12,7 @@ const Item = ({ data, onClick }) => {
     return <li onClick={() => onClick()} className="searchContainer-result">{data.place_name}</li>
 }
 
-const SearchModel = ({ handleOnItemClick }) => {
+const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
     const [city, setCity] = useState("");
     const [response, setResponse] = useState({
         data: [],
@@ -39,7 +39,7 @@ const SearchModel = ({ handleOnItemClick }) => {
         }, {
             name: "Twoja lokalizacja",
             action: () => {
-                return
+                handleOnLocationButtonClick();
             }
         }
     ]

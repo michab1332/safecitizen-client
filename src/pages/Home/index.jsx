@@ -63,8 +63,7 @@ const Home = () => {
         setCurrentCity(data);
     }
 
-    const handleOnLocationButtonClick = (e) => {
-        e.preventDefault();
+    const handleOnLocationButtonClick = () => {
         goToPositionOnMap([location.coordinates.lng, location.coordinates.lat]);
     }
 
