@@ -1,0 +1,128 @@
+.searchContainer {
+    width: 100%;
+    background-color: #302B27;
+    height: 4.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.searchContainer-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem .5rem;
+}
+
+.searchContainer-text {
+    border-radius: 50px;
+    background-color: #71F79F;
+    height: 40px;
+    width: 80%;
+    max-width: 320px;
+    outline: none;
+    border: none;
+    padding: 0 1rem;
+}
+
+.searchContainer-text::placeholder {
+    color: var(--main-background-color);
+}
+
+.searchContainer-button {
+    width: 40px;
+    height: 40px;
+    background-color: #71F79F;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.searchContainer-results {
+    width: 70%;
+    list-style: none;
+}
+
+.searchContainer-result {
+    margin-top: 2rem;
+    color: #fff;
+    border-bottom: #fff 3px solid;
+    padding-bottom: .5rem;
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .searchContainer {
+        width: 50%;
+        height: 95vh;
+        position: relative;
+    }
+
+    .searchContainer-mobile-active {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .searchContainer-results {
+        display: none;
+    }
+
+    .searchContainer-mobile-active {
+        width: 100%;
+        min-height: 200px;
+        max-height: 400px;
+        background-color: #302B27;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 4.7em;
+        transform-origin: bottom;
+        transition: transform .5s ease;
+        color: #fff;
+        overflow-y: scroll;
+    }
+
+    .searchContainer-mobile {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 4.7em;
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    .searchContainer-mobile-title {
+        padding: 1rem 0;
+        border-bottom: 2px solid #fff;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .searchContainer-result {
+        font-size: .8rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .searchContainer-mobile-results {
+        list-style: none;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
