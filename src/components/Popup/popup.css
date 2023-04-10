@@ -1,0 +1,29 @@
+.popupContainer {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    max-width: 400px;
+    min-height: 3rem;
+    background-color: #ff3333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    animation-name: popupAnimation;
+    animation-duration: 1s;
+}
+
+@keyframes popupAnimation {
+    from {
+        opacity: .4;
+        transform: translateY(-50%) translateX(-50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+    }
+}

@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
 import { useNavigate, Link } from "react-router-dom";
 
+import Popup from "../../components/Popup";
+
 import "./sign.css";
 
 const Signin = () => {
     const [state, setState] = useState({
         name: "",
-        password: ""
+        password: "",
+        error: ""
     });
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.user);
@@ -32,6 +35,10 @@ const Signin = () => {
             dispatch(loginSuccess(response.data));
         }).catch(err => {
             dispatch(loginFailure());
+            setState(prevState => ({
+                ...prevState,
+                error: err.response.data.message
+            }));
         });
     }
 
@@ -43,6 +50,7 @@ const Signin = () => {
 
     return (
         <div className="signContainer">
+            <Popup text={state.error} />
             <form className="signContainer__form" onSubmit={handleSignin}>
                 <p className="signContainer__text">Zaloguj się</p>
                 <input onChange={handleOnInputChange} type="text" className="signcontainer__input" placeholder="Name" name="name" />

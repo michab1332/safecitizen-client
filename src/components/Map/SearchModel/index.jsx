@@ -25,7 +25,6 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
         isAddAlert: false
     });
     const [isSearchMenuActive, setIsSearchMenuActive] = useState(false);
-    //const [isButtonClicked, setIsButtonClicked] = useState(false);
 
     const navigate = useNavigate();
     const { pathname } = useLocation();

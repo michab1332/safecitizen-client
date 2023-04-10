@@ -2,13 +2,16 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+import Popup from "../../components/Popup";
+
 import "../Signin/sign.css";
 
 const Signup = () => {
     const [state, setState] = useState({
         name: "",
         password: "",
-        email: ""
+        email: "",
+        error: ""
     });
     const navigate = useNavigate();
 
@@ -29,12 +32,16 @@ const Signup = () => {
         }).then((response) => {
             navigate("/signin");
         }).catch(err => {
-            console.log(err)
+            setState(prevState => ({
+                ...prevState,
+                error: err.response.data.message
+            }))
         });
     }
 
     return (
         <div className="signContainer">
+            <Popup text={state.error} />
             <form className="signContainer__form" onSubmit={handleOnSignup}>
                 <p className="signContainer__text">Załóż konto</p>
                 <input type="text" onChange={handleOnInputChange} className="signcontainer__input" placeholder="Name" name="name" />
