@@ -16,10 +16,14 @@
     animation-duration: 1s;
 }
 
+.popupContainer__none {
+    display: none;
+}
+
 @keyframes popupAnimation {
     from {
         opacity: .4;
-        transform: translateY(-50%) translateX(-50%);
+        transform: translateY(-100%) translateX(-50%);
     }
 
     to {

@@ -27,19 +27,26 @@ const Signin = () => {
 
     const handleSignin = (e) => {
         e.preventDefault();
-        dispatch(loginStart());
-        axios.post("https://safecitizen-api.onrender.com/api/auth/signin", {
-            name: state.name,
-            password: state.password
-        }, { credentials: true }).then((response) => {
-            dispatch(loginSuccess(response.data));
-        }).catch(err => {
-            dispatch(loginFailure());
-            setState(prevState => ({
-                ...prevState,
-                error: err.response.data.message
-            }));
-        });
+        if (state.name !== "" && state.password !== "") {
+            dispatch(loginStart());
+            axios.post("https://safecitizen-api.onrender.com/api/auth/signin", {
+                name: state.name,
+                password: state.password
+            }, { credentials: true }).then((response) => {
+                dispatch(loginSuccess(response.data));
+            }).catch(err => {
+                dispatch(loginFailure());
+                setState(prevState => ({
+                    ...prevState,
+                    error: err.response.data.message
+                }));
+            });
+            return;
+        }
+        setState(prevState => ({
+            ...prevState,
+            error: "Uzupełnij dane"
+        }));
     }
 
     useEffect(() => {
