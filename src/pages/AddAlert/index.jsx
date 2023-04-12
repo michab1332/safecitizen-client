@@ -42,7 +42,6 @@ export default function AddAlert() {
             handleCreateNewAlert();
             return;
         }
-        console.log("wpisz cos")
     }
 
     const handleCreateNewAlert = async () => {
