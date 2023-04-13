@@ -24,24 +24,30 @@ const Signup = () => {
 
     const handleOnSignup = (e) => {
         e.preventDefault();
-        console.log(state)
-        axios.post("https://safecitizen-api.onrender.com/api/auth/signup", {
-            name: state.name,
-            password: state.password,
-            email: state.email
-        }).then((response) => {
-            navigate("/signin");
-        }).catch(err => {
-            setState(prevState => ({
-                ...prevState,
-                error: err.response.data.message
-            }))
-        });
+        if (state.name !== "" && state.password !== "") {
+            axios.post("https://safecitizen-api.onrender.com/api/auth/signup", {
+                name: state.name,
+                password: state.password,
+                email: state.email
+            }).then((response) => {
+                navigate("/signin");
+            }).catch(err => {
+                setState(prevState => ({
+                    ...prevState,
+                    error: err.response.data.message
+                }))
+            });
+            return;
+        }
+        setState(prevState => ({
+            ...prevState,
+            error: "Uzupełnij dane"
+        }))
     }
 
     return (
         <div className="signContainer">
-            <Popup text={state.error} />
+            <Popup text={state.error} warning />
             <form className="signContainer__form" onSubmit={handleOnSignup}>
                 <p className="signContainer__text">Załóż konto</p>
                 <input type="text" onChange={handleOnInputChange} className="signcontainer__input" placeholder="Name" name="name" />

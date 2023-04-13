@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./popup.css";
 
-export default function Popup({ text, timeout }) {
+export default function Popup({ text, timeout, warning }) {
     const [textPopup, setTextPopup] = useState(text);
+    const popupRef = useRef();
 
     useEffect(() => {
         if (textPopup !== "" && timeout === true) {
@@ -20,5 +21,9 @@ export default function Popup({ text, timeout }) {
         setTextPopup(text)
     }, [text]);
 
-    return (<div className={textPopup !== "" ? 'popupContainer' : 'popupContainer__none'}>{textPopup}</div>);
+    useEffect(() => {
+        popupRef.current.style.backgroundColor = warning ? "#ff3333" : "#339cff";
+    }, []);
+
+    return (<div ref={popupRef} className={textPopup !== "" ? 'popupContainer' : 'popupContainer__none'}>{textPopup}</div>);
 }

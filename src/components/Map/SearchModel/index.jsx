@@ -168,4 +168,6 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
     );
 }
 
+// Uproscic search model przez usuniecie routeru addAlert i alert => zaimportowanie komponentow addAlert i alert prosto do SearchMobile popreez np. children => <SearchMobile> <AddAlert/> </SearchMobile> EZZ
+
 export default SearchModel;

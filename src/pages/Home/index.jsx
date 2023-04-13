@@ -5,11 +5,13 @@ import mapboxgl from "mapbox-gl";
 import useSupercluster from "use-supercluster";
 import { useNavigate } from "react-router-dom";
 import useGeoLocation from "../../hooks/useGeoLocation";
+import { useSelector } from "react-redux";
 
 import Header from "../../components/Header";
 import SearchModel from "../../components/Map/SearchModel";
 import MarkerItem from "../../components/Map/Marker";
 import MarkerCluster from "../../components/Map/Marker/MarkerCluster";
+import Popup from "../../components/Popup";
 
 import MarkerIcon from "../../assets/markerIcon.svg";
 import MarkerLocationIcon from "../../assets/locationOnHomeMap.svg";
@@ -22,6 +24,7 @@ const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
 mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 const Home = () => {
     const mapRef = useRef();
+    const { user } = useSelector(state => state);
 
     const location = useGeoLocation();
     const [viewState, setViewState] = useState({
@@ -106,6 +109,7 @@ const Home = () => {
 
     return <div className="homeContainer">
         <Header />
+        <Popup text={user?.user?.name === undefined ? `Unlogged` : `Logged as ${user?.user?.name}`} timeout />
         <div className="homeContainer__wrapper">
             <Map
                 {...viewState}

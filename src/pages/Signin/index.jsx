@@ -57,7 +57,7 @@ const Signin = () => {
 
     return (
         <div className="signContainer">
-            <Popup text={state.error} />
+            <Popup text={state.error} warning />
             <form className="signContainer__form" onSubmit={handleSignin}>
                 <p className="signContainer__text">Zaloguj się</p>
                 <input onChange={handleOnInputChange} type="text" className="signcontainer__input" placeholder="Name" name="name" />
