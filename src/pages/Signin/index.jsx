@@ -15,7 +15,7 @@ const Signin = () => {
         error: ""
     });
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user);
+    const { user, loading } = useSelector(state => state.user);
     const navigate = useNavigate();
 
     const handleOnInputChange = (e) => {
@@ -48,6 +48,7 @@ const Signin = () => {
             error: "Uzupełnij dane"
         }));
     }
+    console.log(loading)
 
     useEffect(() => {
         if (user !== null) {
@@ -57,7 +58,8 @@ const Signin = () => {
 
     return (
         <div className="signContainer">
-            <Popup text={state.error} warning />
+            <Popup text={loading === true ? "Loading..." : ""} />
+            <Popup text={state.error} warning timeout />
             <form className="signContainer__form" onSubmit={handleSignin}>
                 <p className="signContainer__text">Zaloguj się</p>
                 <input onChange={handleOnInputChange} type="text" className="signcontainer__input" placeholder="Name" name="name" />
