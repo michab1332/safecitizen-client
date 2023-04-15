@@ -43,37 +43,30 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
         }
     ]
 
+    function handleOnMobileStateChange(menuActive, mobileStateName) {
+        setIsSearchMenuActive(menuActive)
+        setActiveSearchMobileState(prevState => ({
+            choosingAction: false,
+            searchingCity: false,
+            isAlert: false,
+            isAddAlert: false,
+            [mobileStateName]: true
+        }));
+    }
+
     function handleOnChangeSearchInput(e) {
         const { value } = e.target;
         setCity(value);
         if (value.length === 0) {
-            setIsSearchMenuActive(false)
-            setActiveSearchMobileState(prevState => ({
-                choosingAction: false,
-                searchingCity: false,
-                isAlert: false,
-                isAddAlert: false
-            }));
+            handleOnMobileStateChange(false);
             return;
         }
-        setIsSearchMenuActive(true);
-        setActiveSearchMobileState(prevState => ({
-            choosingAction: false,
-            searchingCity: true,
-            isAlert: false,
-            isAddAlert: false
-        }));
+        handleOnMobileStateChange(true, "searchingCity");
     }
 
     function handleOnButtonClick(e) {
         e.preventDefault();
-        setIsSearchMenuActive(prevState => !prevState);
-        setActiveSearchMobileState(prevState => ({
-            choosingAction: true,
-            searchingCity: false,
-            isAlert: false,
-            isAddAlert: false
-        }));
+        handleOnMobileStateChange(!isSearchMenuActive, "choosingAction");
         navigate("/");
     }
 
@@ -102,29 +95,11 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
 
     useEffect(() => {
         if (getPathName() === "alert") {
-            setActiveSearchMobileState(prevState => ({
-                choosingAction: false,
-                searchingCity: false,
-                isAlert: true,
-                isAddAlert: false
-            }));
-            setIsSearchMenuActive(true);
+            handleOnMobileStateChange(true, "isAlert");
         } else if (getPathName() === "addAlert") {
-            setActiveSearchMobileState(prevState => ({
-                choosingAction: false,
-                searchingCity: false,
-                isAlert: false,
-                isAddAlert: true
-            }));
-            setIsSearchMenuActive(true);
+            handleOnMobileStateChange(true, "isAddAlert");
         } else {
-            setActiveSearchMobileState(prevState => ({
-                choosingAction: false,
-                searchingCity: false,
-                isAlert: false,
-                isAddAlert: false
-            }));
-            setIsSearchMenuActive(false);
+            handleOnMobileStateChange(false);
         }
     }, [pathname])
 
