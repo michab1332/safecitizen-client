@@ -54,7 +54,7 @@ const Signin = () => {
         if (user !== null) {
             navigate("/");
         }
-    }, [user]);
+    });
 
     return (
         <div className="signContainer">
