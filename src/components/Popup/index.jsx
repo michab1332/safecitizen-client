@@ -23,7 +23,7 @@ export default function Popup({ text, timeout, warning }) {
 
     useEffect(() => {
         popupRef.current.style.backgroundColor = warning ? "#ff3333" : "#339cff";
-    }, []);
+    });
 
     return (<div ref={popupRef} className={textPopup !== "" ? 'popupContainer' : 'popupContainer__none'}>{textPopup}</div>);
 }

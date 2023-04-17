@@ -6,7 +6,7 @@ import "./alert.css";
 
 const AlertI = () => {
     const alert = useGetAlert();
-    const { data, loading, error } = alert;
+    const { data } = alert;
     const navigate = useNavigate();
     const handleHideAlertButton = (e) => {
         e.preventDefault();

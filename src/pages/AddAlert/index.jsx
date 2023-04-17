@@ -47,7 +47,7 @@ export default function AddAlert() {
     const handleCreateNewAlert = async () => {
         if (state.title && state.description && place.loaded === true) {
             try {
-                const response = await axios.post("https://safecitizen-api.onrender.com/api/alert/add", {
+                await axios.post("https://safecitizen-api.onrender.com/api/alert/add", {
                     title: state.title,
                     description: state.description,
                     location: {

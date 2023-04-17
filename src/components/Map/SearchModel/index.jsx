@@ -127,18 +127,16 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
 
     return (
         <div className="searchContainer">
-
-            {searchMobile}
-
             <form className="searchContainer-form">
                 <input value={city} onChange={handleOnChangeSearchInput} type="text" placeholder="Szukaj miasta" className="searchContainer-text" />
                 <button onClick={handleOnButtonClick} className="searchContainer-button">
                     <img src={LocationIcon} alt="search_icon" />
                 </button>
             </form>
-            <ul className="searchContainer-results">
+            {/* <ul className="searchContainer-results">
                 {responseArrayMapped}
-            </ul>
+            </ul> */}
+            {searchMobile}
         </div>
     );
 }
