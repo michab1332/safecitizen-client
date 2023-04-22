@@ -133,14 +133,9 @@ const SearchModel = ({ handleOnItemClick, handleOnLocationButtonClick }) => {
                     <img src={LocationIcon} alt="search_icon" />
                 </button>
             </form>
-            {/* <ul className="searchContainer-results">
-                {responseArrayMapped}
-            </ul> */}
             {searchMobile}
         </div>
     );
 }
-
-// Uproscic search model przez usuniecie routeru addAlert i alert => zaimportowanie komponentow addAlert i alert prosto do SearchMobile popreez np. children => <SearchMobile> <AddAlert/> </SearchMobile> EZZ
 
 export default SearchModel;
